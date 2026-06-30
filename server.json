@@ -1,0 +1,69 @@
+{
+	"$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+	"name": "io.github.nirholas/three-token-mcp",
+	"title": "$THREE Token",
+	"description": "Price, hold, and burn $THREE on Solana — the first MCP server whose actions burn a token.",
+	"websiteUrl": "https://three.ws",
+	"icons": [
+		{
+			"src": "https://three.ws/three-ws-mcp-icon.svg",
+			"mimeType": "image/svg+xml",
+			"sizes": [
+				"any"
+			]
+		}
+	],
+	"repository": {
+		"url": "https://github.com/nirholas/three-token-mcp",
+		"source": "github"
+	},
+	"version": "1.1.0",
+	"packages": [
+		{
+			"registryType": "npm",
+			"identifier": "@three-ws/three-token-mcp",
+			"version": "1.1.0",
+			"runtimeHint": "npx",
+			"transport": {
+				"type": "stdio"
+			},
+			"environmentVariables": [
+				{
+					"name": "SOLANA_SECRET_KEY",
+					"description": "Base58 Solana secret key that signs burns (the wallet that holds the $THREE). Not needed for the read-only tools (three_price, three_balance). Treat like cash.",
+					"format": "string",
+					"isRequired": false,
+					"isSecret": true
+				},
+				{
+					"name": "SOLANA_RPC_URL",
+					"description": "Solana mainnet RPC endpoint. Defaults to the public cluster — bring your own (Helius / QuickNode / Triton) for production traffic.",
+					"format": "string",
+					"isRequired": false,
+					"default": "https://api.mainnet-beta.solana.com"
+				},
+				{
+					"name": "THREE_WS_BASE",
+					"description": "Base URL of the three.ws token API (serves /api/token/config and /api/token/price). Override only when self-hosting.",
+					"format": "string",
+					"isRequired": false,
+					"default": "https://three.ws"
+				},
+				{
+					"name": "MAX_BURN_USD",
+					"description": "Max USD value of $THREE a single three_burn call may destroy.",
+					"format": "number",
+					"isRequired": false,
+					"default": "100"
+				},
+				{
+					"name": "REQUIRE_CONFIRM",
+					"description": "When on (default), three_burn refuses until re-issued with confirm:true. Set 0/false to disable the gate.",
+					"format": "boolean",
+					"isRequired": false,
+					"default": "true"
+				}
+			]
+		}
+	]
+}
