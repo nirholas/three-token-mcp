@@ -172,7 +172,4 @@ The server pre-checks your $THREE balance and fails fast with a clear error if i
 
 ## License
 
-Copyright © 2026 nirholas. All rights reserved.
-
-This software is proprietary — see [LICENSE](./LICENSE). No rights are granted
-without the express written permission of the copyright owner.
+All rights reserved. See [LICENSE](LICENSE).
