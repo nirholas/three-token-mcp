@@ -1,0 +1,20 @@
+# @three-ws/three-token-mcp
+
+> The first MCP server whose actions burn a token. Let any AI agent price, hold, and burn $THREE on-chain — every burn splits to the incinerator + treasury via the live three.ws token rail, with Jupiter USD pricing. Deflation as an agent primitive.
+
+@three-ws/three-token-mcp is a Model Context Protocol server from three.ws. Install: `npx -y @three-ws/three-token-mcp`.
+
+## Docs
+
+- [README](https://github.com/nirholas/three-token-mcp/blob/main/README.md): install, configuration, full reference
+- [Documentation site](https://nirholas.github.io/three-token-mcp/): the README as a web page
+- [Full text for LLMs](https://nirholas.github.io/three-token-mcp/llms-full.txt): README inlined
+- [AGENTS.md](https://github.com/nirholas/three-token-mcp/blob/main/AGENTS.md): guidance for coding agents
+
+## Project
+
+- [Source](https://github.com/nirholas/three-token-mcp)
+- [npm](https://www.npmjs.com/package/@three-ws/three-token-mcp)
+- [three.ws](https://three.ws): the platform this is part of
+- [Issues](https://github.com/nirholas/three-token-mcp/issues)
+- [MCP Registry](https://registry.modelcontextprotocol.io/?q=io.github.nirholas%2Fthree-token-mcp)

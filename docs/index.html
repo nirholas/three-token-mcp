@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>@three-ws/three-token-mcp: The first MCP server whose actions burn a token</title>
+<meta name="description" content="The first MCP server whose actions burn a token. Let any AI agent price, hold, and burn $THREE on-chain — every burn splits to the incinerator + treasury via the live three.ws token rail, with Jupiter USD pricing. Deflation as an agent primitive.">
+<link rel="canonical" href="https://nirholas.github.io/three-token-mcp/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="three.ws">
+<meta property="og:title" content="@three-ws/three-token-mcp">
+<meta property="og:description" content="The first MCP server whose actions burn a token. Let any AI agent price, hold, and burn $THREE on-chain — every burn splits to the incinerator + treasury via the live three.ws token rail, with Jupiter USD pricing. Deflation as an agent primitive.">
+<meta property="og:url" content="https://nirholas.github.io/three-token-mcp/">
+<meta property="og:image" content="https://nirholas.github.io/three-token-mcp/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="@three-ws/three-token-mcp">
+<meta name="twitter:description" content="The first MCP server whose actions burn a token. Let any AI agent price, hold, and burn $THREE on-chain — every burn splits to the incinerator + treasury via the live three.ws token rail, with Jupiter USD pricing. Deflation as an agent primitive.">
+<meta name="twitter:image" content="https://nirholas.github.io/three-token-mcp/og.png">
+<meta name="keywords" content="mcp, model-context-protocol, three.ws, $three, solana, spl-token, burn, deflation, x402, jupiter, ai-agent, mcp-server, ai-agents">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<link rel="icon" href="https://three.ws/three-ws-mcp-icon.svg" type="image/svg+xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@three-ws/three-token-mcp","description":"The first MCP server whose actions burn a token. Let any AI agent price, hold, and burn $THREE on-chain — every burn splits to the incinerator + treasury via the live three.ws token rail, with Jupiter USD pricing. Deflation as an agent primitive.","codeRepository":"https://github.com/nirholas/three-token-mcp","programmingLanguage":"JavaScript","license":"https://spdx.org/licenses/Apache-2.0.html","version":"1.1.3","url":"https://nirholas.github.io/three-token-mcp/","author":{"@type":"Organization","name":"three.ws","url":"https://three.ws"},"keywords":"mcp, model-context-protocol, three.ws, $three, solana, spl-token, burn, deflation, x402, jupiter, ai-agent, mcp-server, ai-agents"}</script>
+<style>:root{--bg:#fff;--fg:#111418;--mut:#586069;--line:#e3e6ea;--acc:#2563eb;--code:#f4f6f8;--card:#fafbfc}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0d10;--fg:#e8eaed;--mut:#9aa3ad;--line:#232830;--acc:#6ea0ff;--code:#14181d;--card:#10141a}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--acc)}a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
+header.bar{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:700;text-decoration:none;color:var(--fg)}
+.bar nav{margin-left:auto;display:flex;gap:16px;font-size:14px}
+.bar nav a{color:var(--mut);text-decoration:none;transition:color .15s}.bar nav a:hover{color:var(--fg)}
+.hero{max-width:1100px;margin:0 auto;padding:48px 16px 24px}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{color:var(--mut);max-width:70ch;font-size:18px;margin:0 0 24px}
+.install{display:flex;align-items:center;gap:8px;max-width:620px;background:var(--code);border:1px solid var(--line);border-radius:10px;padding:6px 6px 6px 14px}
+.install code{flex:1;overflow-x:auto;white-space:nowrap;font:14px ui-monospace,SFMono-Regular,Menlo,monospace}
+.install button{border:0;background:var(--acc);color:#fff;border-radius:7px;padding:8px 14px;font:600 13px system-ui;cursor:pointer;transition:transform .12s,opacity .12s}
+.install button:hover{opacity:.9}.install button:active{transform:scale(.96)}
+.cta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.cta a{padding:9px 16px;border:1px solid var(--line);border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;color:var(--fg);transition:border-color .15s,transform .15s}
+.cta a:hover{border-color:var(--acc);transform:translateY(-1px)}.cta a.pri{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.layout{max-width:1100px;margin:0 auto;padding:8px 16px 64px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:40px}
+@media(max-width:860px){.layout{grid-template-columns:minmax(0,1fr)}.toc{display:none}}
+.toc{position:sticky;top:76px;align-self:start;font-size:14px;border-left:1px solid var(--line);padding-left:16px}
+.toc p{margin:0 0 8px;font-weight:700;color:var(--mut);text-transform:uppercase;font-size:12px;letter-spacing:.06em}
+.toc ul{list-style:none;margin:0;padding:0}.toc li{margin:6px 0}.toc a{color:var(--mut);text-decoration:none}.toc a:hover{color:var(--fg)}
+main{min-width:0;overflow-wrap:anywhere}main pre code{overflow-wrap:normal}main img{max-width:100%;height:auto}
+main h2{margin-top:2.2em;padding-bottom:.3em;border-bottom:1px solid var(--line)}
+.anchor{margin-left:-1.1em;padding-right:.4em;text-decoration:none;opacity:0;color:var(--mut)}h2:hover .anchor,h3:hover .anchor,h4:hover .anchor{opacity:1}
+pre{background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font-size:14px;line-height:1.5}
+code{font:0.9em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--code);padding:.15em .35em;border-radius:5px}pre code{background:none;padding:0}
+table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}th,td{border:1px solid var(--line);padding:8px 12px;text-align:left}th{background:var(--card)}
+blockquote{margin:1em 0;padding:.2em 1em;border-left:4px solid var(--line);color:var(--mut)}
+footer{border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.foot-in{max-width:1100px;margin:0 auto;padding:24px 16px;display:flex;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}</style>
+</head>
+<body>
+<header class="bar"><div class="bar-in">
+<a class="brand" href="https://nirholas.github.io/three-token-mcp/">@three-ws/three-token-mcp</a>
+<nav aria-label="Project links"><a href="https://github.com/nirholas/three-token-mcp">GitHub</a><a href="https://www.npmjs.com/package/@three-ws/three-token-mcp">npm</a><a href="llms.txt">llms.txt</a><a href="https://three.ws">three.ws</a></nav>
+</div></header>
+<section class="hero">
+<h1>@three-ws/three-token-mcp</h1>
+<p>The first MCP server whose actions burn a token. Let any AI agent price, hold, and burn $THREE on-chain — every burn splits to the incinerator + treasury via the live three.ws token rail, with Jupiter USD pricing. Deflation as an agent primitive.</p>
+<div class="install" role="group" aria-label="Install command"><code>npx -y @three-ws/three-token-mcp</code><button type="button" data-copy="npx -y @three-ws/three-token-mcp">Copy</button></div>
+<div class="cta"><a class="pri" href="https://github.com/nirholas/three-token-mcp">View on GitHub</a><a href="https://github.com/nirholas/three-token-mcp/stargazers">Star the repo</a><a href="https://registry.modelcontextprotocol.io/?q=io.github.nirholas%2Fthree-token-mcp">MCP Registry</a></div>
+</section>
+<div class="layout">
+<main id="content"><p align="center"><strong>The first MCP server whose actions burn a token — let any AI agent price, hold, and burn $THREE on Solana.</strong></p><p align="center">
+  <a href="https://www.npmjs.com/package/@three-ws/three-token-mcp"><img alt="npm" src="https://img.shields.io/npm/v/@three-ws/three-token-mcp?logo=npm&color=cb3837"></a>
+  <a href="https://www.npmjs.com/package/@three-ws/three-token-mcp"><img alt="downloads" src="https://img.shields.io/npm/dm/@three-ws/three-token-mcp?color=cb3837"></a>
+  <img alt="license" src="https://img.shields.io/npm/l/@three-ws/three-token-mcp?color=3b82f6">
+  <img alt="node" src="https://img.shields.io/node/v/@three-ws/three-token-mcp?color=339933&logo=node.js">
+  <a href="https://registry.modelcontextprotocol.io/?q=io.github.nirholas"><img alt="MCP Registry" src="https://img.shields.io/badge/MCP%20Registry-io.github.nirholas-0ea5e9"></a>
+  <a href="https://three.ws"><img alt="three.ws" src="https://img.shields.io/badge/built%20by-three.ws-000"></a>
+</p><p align="center">
+  <a href="#install">Install</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#tools">Tools</a> ·
+  <a href="#requirements">Requirements</a> ·
+  <a href="https://three.ws">three.ws</a>
+</p><hr>
+<blockquote>
+<p>A <a href="https://modelcontextprotocol.io">Model Context Protocol</a> server that gives any AI assistant three $THREE primitives over stdio: read the live USD price, read a wallet&#39;s balance, and <strong>burn $THREE on-chain</strong> — split between the incinerator and the three.ws treasury, priced live via Jupiter. Deflation as an agent primitive: every <code>three_burn</code> call is a real, verifiable Solana transaction that permanently removes $THREE from supply and funds the treasury.</p>
+</blockquote>
+<p>$THREE is the only coin this server touches. Contract address (mainnet SPL): <code>FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump</code>.</p>
+<h2 id="why-this-is-different"><a class="anchor" href="#why-this-is-different" aria-label="Link to this section">#</a>Why this is different</h2>
+<p>Most paid MCP servers settle in USDC. This one moves the project&#39;s own token, and the destinations are not hardcoded — they&#39;re read at runtime from the <strong>public</strong> three.ws token surface (<code>/api/token/config</code>, <code>/api/token/price</code>), so the mint, decimals, burn address, treasury, and split always track the canonical on-chain config the rest of three.ws uses. Before signing, the resolved mint is asserted to equal the canonical $THREE address above — a misconfigured or compromised endpoint cannot redirect a burn to any other token.</p>
+<h2 id="install"><a class="anchor" href="#install" aria-label="Link to this section">#</a>Install</h2>
+<pre><code class="language-bash">npm install @three-ws/three-token-mcp
+</code></pre>
+<p>Run it directly with <code>npx</code> (no install needed):</p>
+<pre><code class="language-bash">SOLANA_SECRET_KEY=&lt;base58&gt; npx @three-ws/three-token-mcp
+</code></pre>
+<p>Or install globally for the <code>three-token-mcp</code> binary on your <code>PATH</code>:</p>
+<pre><code class="language-bash">npm install -g @three-ws/three-token-mcp
+</code></pre>
+<h2 id="quick-start"><a class="anchor" href="#quick-start" aria-label="Link to this section">#</a>Quick start</h2>
+<p><strong>Claude Code</strong>, one line:</p>
+<pre><code class="language-bash">claude mcp add three-token -- npx -y @three-ws/three-token-mcp
+</code></pre>
+<p><strong>Claude Desktop / Cursor</strong> (<code>claude_desktop_config.json</code> or <code>mcp.json</code>):</p>
+<pre><code class="language-json">{
+	&quot;mcpServers&quot;: {
+		&quot;three-token&quot;: {
+			&quot;command&quot;: &quot;npx&quot;,
+			&quot;args&quot;: [&quot;-y&quot;, &quot;@three-ws/three-token-mcp&quot;],
+			&quot;env&quot;: {
+				&quot;SOLANA_SECRET_KEY&quot;: &quot;&lt;base58 secret of the wallet that holds $THREE&gt;&quot;,
+				&quot;SOLANA_RPC_URL&quot;: &quot;https://your-rpc-provider&quot;
+			}
+		}
+	}
+}
+</code></pre>
+<p><code>SOLANA_SECRET_KEY</code> is only required for <code>three_burn</code>. The read-only tools (<code>three_price</code>, <code>three_balance</code>) work without it. Inspect the surface with the MCP Inspector:</p>
+<pre><code class="language-bash">npx -y @modelcontextprotocol/inspector npx @three-ws/three-token-mcp
+</code></pre>
+<h2 id="tools"><a class="anchor" href="#tools" aria-label="Link to this section">#</a>Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Type</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>three_price</code></td>
+<td>read-only</td>
+<td>Live USD price of $THREE (Jupiter primary, Birdeye fallback). Pass <code>usd</code> to also get the token-amount quote.</td>
+</tr>
+<tr>
+<td><code>three_balance</code></td>
+<td>read-only</td>
+<td>$THREE + SOL balance for any pubkey (defaults to the configured signer).</td>
+</tr>
+<tr>
+<td><code>three_burn</code></td>
+<td><strong>execution</strong></td>
+<td>Burn a USD-denominated amount of $THREE in one Solana tx, split incinerator/treasury. Returns the signature, breakdown, and a Solscan link.</td>
+</tr>
+</tbody></table>
+<p><code>three_burn</code> burns $THREE the wallet <strong>already holds</strong>. To acquire $THREE first, swap SOL → $THREE on any Solana DEX, then burn.</p>
+<h3 id="safety"><a class="anchor" href="#safety" aria-label="Link to this section">#</a>Safety</h3>
+<p>All three tools ship <a href="https://modelcontextprotocol.io/specification/2025-06-18/server/tools#tool-annotations">MCP tool annotations</a>: <code>three_price</code> and <code>three_balance</code> advertise <code>readOnlyHint: true</code> and can be safely auto-approved; <code>three_burn</code> is flagged <code>destructiveHint: true</code>, so annotation-aware MCP clients (Claude Code, Claude Desktop, Cursor) prompt for confirmation before running it. The hints are advisory — server-side, every burn is still bounded by <code>MAX_BURN_USD</code> (default $100), gated by <code>REQUIRE_CONFIRM</code> (default on: the call refuses until re-issued with <code>confirm: true</code>), and the resolved mint is asserted to be canonical $THREE before signing, independent of the client.</p>
+<h3 id="input-parameters"><a class="anchor" href="#input-parameters" aria-label="Link to this section">#</a>Input parameters</h3>
+<p><strong><code>three_price</code></strong> — <code>usd</code> (optional positive number: USD amount to quote into $THREE).</p>
+<p><strong><code>three_balance</code></strong> — <code>pubkey</code> (optional base58, 32–64 chars; defaults to the configured signer&#39;s address).</p>
+<p><strong><code>three_burn</code></strong> — <code>usd</code> (required positive number: USD value of $THREE to burn), <code>burnBps</code> (0–10000, default 5000 = 50% burn / 50% treasury; 10000 = burn everything), <code>memo</code> (optional, ≤120 chars; appended to the on-chain memo), <code>secret</code> (optional base58 signer override; defaults to <code>SOLANA_SECRET_KEY</code>), <code>confirm</code> (must be <code>true</code> to execute the irreversible burn when <code>REQUIRE_CONFIRM</code> is on).</p>
+<h2 id="example"><a class="anchor" href="#example" aria-label="Link to this section">#</a>Example</h2>
+<pre><code class="language-jsonc">// three_price
+&gt; { &quot;usd&quot;: 5 }
+{ &quot;price_usd&quot;: 0.0042, &quot;quote&quot;: { &quot;usd&quot;: 5, &quot;token_amount&quot;: 1190.47, &quot;atomics&quot;: &quot;1190476190&quot; } }
+
+// three_burn — irreversible; confirm:true required by default
+&gt; { &quot;usd&quot;: 5, &quot;burnBps&quot;: 5000, &quot;confirm&quot;: true }
+{
+  &quot;ok&quot;: true,
+  &quot;signature&quot;: &quot;5x...&quot;,
+  &quot;explorer&quot;: &quot;https://solscan.io/tx/5x...&quot;,
+  &quot;usd&quot;: 5,
+  &quot;burned&quot;: 595.23,
+  &quot;legs&quot;: [
+    { &quot;role&quot;: &quot;burn&quot;, &quot;amount&quot;: 595.23 },
+    { &quot;role&quot;: &quot;treasury&quot;, &quot;amount&quot;: 595.23 }
+  ]
+}
+</code></pre>
+<h2 id="how-a-burn-is-built"><a class="anchor" href="#how-a-burn-is-built" aria-label="Link to this section">#</a>How a burn is built</h2>
+<p><code>three_burn</code> mirrors the proven three.ws browser payment flow:</p>
+<ol>
+<li><code>GET /api/token/config</code> → mint, decimals, burn address, treasury.</li>
+<li><code>GET /api/token/price?usd=&lt;n&gt;</code> → live Jupiter price and the exact $THREE atomics.</li>
+<li>Build <strong>one</strong> transaction: an idempotent ATA-create + SPL transfer per leg (burn + treasury), plus a memo tagging the burn on-chain. An amount that will not divide evenly at <code>burnBps</code> gives the leftover atomic unit to the <strong>burn</strong> leg, so a burn is never short of its share; with <code>burnBps: 10000</code> (or a config with no treasury) there is one leg and everything is destroyed.</li>
+<li>Sign with your wallet, send, and confirm. The result reports the on-chain signature and per-leg amounts.</li>
+</ol>
+<p>The server pre-checks your $THREE balance and fails fast with a clear error if it can&#39;t cover the burn — no opaque on-chain failures. Burns are bounded by <code>MAX_BURN_USD</code> (default $100) and gated by <code>REQUIRE_CONFIRM</code> (default on).</p>
+<h2 id="requirements"><a class="anchor" href="#requirements" aria-label="Link to this section">#</a>Requirements</h2>
+<ul>
+<li><strong>Node.js &gt;= 20.</strong></li>
+<li>A Solana mainnet RPC endpoint (the public cluster works for read-only; bring your own — Helius / Quicknode / Triton — for burn traffic). The endpoint must be <code>https</code> (only <code>http://localhost</code> is accepted, for local dev validators).</li>
+<li>For burns: a wallet holding $THREE, provided as a base58 <code>SOLANA_SECRET_KEY</code> (or a per-call <code>secret</code>).</li>
+</ul>
+<h3 id="environment-variables"><a class="anchor" href="#environment-variables" aria-label="Link to this section">#</a>Environment variables</h3>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Required</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SOLANA_SECRET_KEY</code></td>
+<td>for burns only</td>
+<td>none (<code>FUNDER_SECRET</code> is accepted as a fallback)</td>
+</tr>
+<tr>
+<td><code>SOLANA_RPC_URL</code></td>
+<td>no</td>
+<td><code>https://api.mainnet-beta.solana.com</code></td>
+</tr>
+<tr>
+<td><code>THREE_WS_BASE</code></td>
+<td>no</td>
+<td><code>https://three.ws</code></td>
+</tr>
+<tr>
+<td><code>MAX_BURN_USD</code></td>
+<td>no</td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>REQUIRE_CONFIRM</code></td>
+<td>no</td>
+<td><code>true</code> (set <code>0</code>/<code>false</code> to skip the confirm gate)</td>
+</tr>
+<tr>
+<td><code>THREE_BURN_ADDRESS</code></td>
+<td>no</td>
+<td>the Solana incinerator</td>
+</tr>
+</tbody></table>
+<h2 id="links"><a class="anchor" href="#links" aria-label="Link to this section">#</a>Links</h2>
+<ul>
+<li>Homepage: <a href="https://three.ws">https://three.ws</a></li>
+<li>Changelog: <a href="https://three.ws/changelog">https://three.ws/changelog</a></li>
+<li>Issues: <a href="https://github.com/nirholas/three.ws/issues">https://github.com/nirholas/three.ws/issues</a></li>
+<li>License: Apache-2.0, see <a href="https://github.com/nirholas/three-token-mcp/blob/main/LICENSE">LICENSE</a></li>
+</ul>
+<hr>
+<p align="center">
+  <sub>
+    Part of the <a href="https://three.ws">three.ws</a> SDK suite — 3D AI agents, on-chain identity, and agent payments.<br/>
+    <a href="https://three.ws">Website</a> · <a href="https://three.ws/changelog">Changelog</a> · <a href="https://github.com/nirholas/three.ws">GitHub</a>
+  </sub>
+</p>
+</main>
+<nav class="toc" aria-label="On this page"><p>On this page</p><ul><li><a href="#why-this-is-different">Why this is different</a></li><li><a href="#install">Install</a></li><li><a href="#quick-start">Quick start</a></li><li><a href="#tools">Tools</a></li><li><a href="#example">Example</a></li><li><a href="#how-a-burn-is-built">How a burn is built</a></li><li><a href="#requirements">Requirements</a></li><li><a href="#links">Links</a></li></ul></nav>
+</div>
+<footer><div class="foot-in"><span>Apache-2.0 licensed</span><a href="https://github.com/nirholas/three-token-mcp/issues">Issues</a><a href="https://github.com/nirholas/three-token-mcp/blob/main/CONTRIBUTING.md">Contributing</a><a href="https://github.com/nirholas/three-token-mcp/security/policy">Security</a><a href="https://three.ws">Part of three.ws</a></div></footer>
+<script>document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+var t=b.getAttribute('data-copy');var done=function(){var o=b.textContent;b.textContent='Copied';setTimeout(function(){b.textContent=o},1400)};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}
+else{var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}a.remove()}})});</script>
+</body>
+</html>
